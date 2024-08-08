@@ -1,3 +1,0 @@
-vao thu muc co chua tep jenkinh chayj terminal 
-java -jar jenkins.war -httpPort=8080
-khi chay tren jenkins xong, vo eclipse lasy duong dan tu muc hmtl trong target len gg mo xem report 
