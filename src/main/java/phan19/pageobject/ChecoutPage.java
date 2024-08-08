@@ -1,0 +1,49 @@
+package phan19.pageobject;
+
+import java.awt.Desktop.Action;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import phan19.AbstractComponennts.Abstract;
+
+public class ChecoutPage extends Abstract {
+
+	WebDriver driver;
+	public ChecoutPage(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	//
+	@FindBy(css = ".action__submit")
+	WebElement submit;
+	//
+	@FindBy(xpath = "//input[@placeholder='Select Country']")
+	WebElement country;
+	//
+	@FindBy(xpath = "//button[@class='ta-item list-group-item ng-star-inserted'][2]")
+	WebElement selectContry;
+	//
+	By results = By.cssSelector(".ta-results");
+	//chon quoc gia 
+	public void selectCountry(String countryName) {
+		Actions a = new Actions(driver);
+	
+		a.sendKeys(country,countryName).build().perform();
+		waiForToAppear(results);
+		selectContry.click();
+		
+	}
+	//submit order
+	public ConfimatinPage submitOrder() {
+		waiElementToAppear(submit);
+		submit.click();
+		return new ConfimatinPage(driver);
+	}
+
+}
